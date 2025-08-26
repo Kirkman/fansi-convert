@@ -961,8 +961,8 @@ def main():
 
 	input_filepath = os.path.normpath(str(args['input_file']))
 	input_filename = os.path.basename(input_filepath)
-	input_extension = os.path.splitext(input_filepath)[-1].replace('.','')
-	input_type = input_extension.lower()
+	input_extension = os.path.splitext(input_filepath)[-1]
+	input_type = input_extension.replace('.','').lower()
 	ext_upper = input_extension.isupper()
 
 	if input_type not in ['ans','txt','fan']:
@@ -971,7 +971,7 @@ def main():
 
 	png_path = None
 	if args['png']:
-		out_ext = 'png'
+		out_ext = '.png'
 		if ext_upper:
 			out_ext = out_ext.upper()
 
@@ -979,10 +979,13 @@ def main():
 
 	scale = 2
 	if args['scale']:
-		scale = int(args['scale'])
+		if type(args['scale']) is list:
+			scale = int(args['scale'][0])
+		elif type(args['scale']) is int:
+			scale = args['scale']
 
 	if input_type == 'fan':
-		out_ext = 'ans'
+		out_ext = '.ans'
 		if ext_upper:
 			out_ext = out_ext.upper()
 
@@ -996,7 +999,7 @@ def main():
 		)
 
 	elif input_type in ['ans', 'txt']:
-		out_ext = 'fan'
+		out_ext = '.fan'
 		if ext_upper:
 			out_ext = out_ext.upper()
 
