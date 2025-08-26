@@ -56,9 +56,6 @@ python convert.py MYFANSI.FAN
 ```
 
 
-![Old advertisement for the Atari ST program "FANSI"](https://raw.githubusercontent.com/Kirkman/fansi-convert/master/FANSI.PNG)
-
-
 Important notes
 ---------------
 
@@ -69,6 +66,9 @@ Important notes
 3. This script can optionally produce a PNG image as part of the workflow using the `-P` or `--png` flag. This PNG will use FANSI's 4x8 font and color palette. You can adjust the scale of the PNG with the `-s` or `--scale` switch.
 
 4. This script is mainly intended for use with ANSI art files, but it also can be used to convert plain text files to .FAN format. Text files must have the extension .TXT, and conversion is only works in one direction (TXT -> FAN).
+
+
+![Old advertisement for the Atari ST program "FANSI"](https://raw.githubusercontent.com/Kirkman/fansi-convert/master/FANSI.PNG)
 
 
 FAN file format
