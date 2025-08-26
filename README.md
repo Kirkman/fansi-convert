@@ -1,14 +1,24 @@
 FANSI CONVERT
 =============
 
-![Old advertisement for the Atari ST program "FANSI"](https://raw.githubusercontent.com/Kirkman/fansi-convert/master/FANSI.PNG)
-
 This Python script enables you to convert .ANS or .TXT files to .FAN for the first time in 30 years! You can also do reverse conversions, or export PNG preview images.
 
-* [How do I use this?](#how-do-i-use-this)
 * [Why would someone need this?](#why-would-someone-need-this)
+* [How do I use this?](#how-do-i-use-this)
 * [Important notes](#important-notes)
 * [FAN file format](#fan-file-format)
+
+
+Why would someone need this?
+----------------------------
+
+This script is for Atari ST users who want to convert .ANS files to .FAN format for use with "FANSI," an Atari ST ANSI art editor released in 1994 by Eric March.
+
+While FANSI can save artwork as cross-platform .ANS files, it cannot _read_ .ANS files. FANSI will only read its native format (.FAN). 
+
+Since FANSI was the only ANSI art editor available for the Atari ST, this was a major limitation. For decades, Atari ST sysops and BBSers were unable to open or modify ANSI art created by any other program/platform.
+
+Until now.
 
 
 How do I use this?
@@ -28,37 +38,27 @@ pip install Pillow
 python convert.py [-h] [-P] [-s] input_file
 or
 python convert.py [--help] [--png] [--scale] input_file
-
 ```
 
 ### Examples
 
-Convert an .ANS file to .FAN, generate a PNG image, and set the PNG's scale to 4.
+_Convert an .ANS file to .FAN, generate a PNG image, and set the PNG's scale to 4_
 ```
 python convert.py MYANSI.ANS --png --scale 4
 ```
 
-Convert a .TXT file to .FAN
+_Convert a .TXT file to .FAN_
 ```
 python convert.py MYTEXT.TXT
 ```
 
-Convert a .FAN file to .ANS
+_Convert a .FAN file to .ANS_
 ```
 python convert.py MYFANSI.FAN
 ```
 
 
-Why would someone need this?
-----------------------------
-
-This script is for Atari ST users who want to convert .ANS files to .FAN format for use with "FANSI," an Atari ST ANSI art editor released in 1994 by Eric March.
-
-While FANSI can save artwork as cross-platform .ANS files, it cannot _read_ .ANS files. FANSI will only read its native format (.FAN). 
-
-Since FANSI was the only ANSI art editor available for the Atari ST, this was a major limitation. For decades, Atari ST sysops and BBSers were unable to open or modify ANSI art created by any other program/platform.
-
-Until now.
+![Old advertisement for the Atari ST program "FANSI"](https://raw.githubusercontent.com/Kirkman/fansi-convert/master/FANSI.PNG)
 
 
 Important notes
