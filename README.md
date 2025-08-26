@@ -16,9 +16,7 @@ This script is for Atari ST users who want to convert .ANS files to .FAN format 
 
 While FANSI can save artwork as cross-platform .ANS files, it cannot _read_ .ANS files. FANSI will only read its native format (.FAN). 
 
-Since FANSI was the only ANSI art editor available for the Atari ST, this was a major limitation. For decades, Atari ST sysops and BBSers were unable to open or modify ANSI art created by any other program/platform.
-
-Until now.
+Since FANSI was just about the only 16-color ANSI art editor available for the Atari ST, this was a major limitation.
 
 
 How do I use this?
