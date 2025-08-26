@@ -1,6 +1,8 @@
 FANSI CONVERT
 =============
 
+![Old advertisement for the Atari ST program "FANSI"](https://raw.githubusercontent.com/Kirkman/fansi-convert/master/FANSI.PNG)
+
 This Python script enables you to convert .ANS or .TXT files to .FAN for the first time in 30 years! You can also do reverse conversions, or export PNG preview images.
 
 * [How do I use this?](#how-do-i-use-this)
