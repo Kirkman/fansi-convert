@@ -1,0 +1,59 @@
+FANSI CONVERT
+=============
+
+This Python script enables you to convert .ANS or .TXT files to .FAN for the first time in 30 years! You can also do reverse conversions, or export PNG preview images.
+
+
+Why would someone need this?
+----------------------------
+
+This script is for Atari ST users who want to convert .ANS files to .FAN format for use with "FANSI," an Atari ST ANSI art editor released in 1994 by Eric March.
+
+While FANSI can save artwork as cross-platform .ANS files, it cannot _read_ .ANS files. FANSI will only read its native format (.FAN). 
+
+Since FANSI was the only ANSI art editor available for the Atari ST, this was a major limitation. For decades, Atari ST sysops and BBSers were unable to open or modify ANSI art created by any other program/platform.
+
+Until now.
+
+
+Important notes
+---------------
+
+1. Because FANSI's canvas is limited to a single 80x24 screen, this converter will keep only the initial 80x24 when converting oversized .ANS or .TXT files to .FAN format.
+
+2. The ANSI parser and exporter in this script are extremely simple/naive. You will not get good results if you try to convert ANSImation or files with cursor movement.
+
+3. This script can optionally produce a PNG image as part of the workflow using the `-P` or `--png` flag. This PNG will use FANSI's 4x8 font and color palette. You can adjust the scale of the PNG with the `-s` or `--scale` switch.
+
+4. This script is mainly intended for use with ANSI art files, but it also can be used to convert plain text files to .FAN format. Text files must have the extension .TXT, and conversion is only works in one direction (TXT -> FAN).
+
+
+How do I use this?
+------------------
+
+Usage:
+```
+convert.py [-h] [-P] [-s] input_file
+or
+convert.py [--help] [--png] [--scale] input_file
+
+```
+
+Examples:
+
+Convert an .ANS file to .FAN, generate a PNG image, and set the PNG's scale to 4.
+```
+python convert.py MYANSI.ANS --png --scale 4
+```
+
+Convert a .TXT file to .FAN
+```
+python convert.py MYTEXT.TXT
+```
+
+Convert a .FAN file to .ANS
+```
+python convert.py MYFANSI.FAN
+```
+
+
