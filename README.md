@@ -1,6 +1,8 @@
 FANSI CONVERT
 =============
 
+![Before-and-after comparison shows ANSI art of the startship Enterprise in .ANS format and .FAN format](https://raw.githubusercontent.com/Kirkman/fansi-convert/master/NI-C1701-comparison.png)
+
 This Python script enables you to convert .ANS or .TXT files to .FAN for the first time in 30 years! You can also do reverse conversions, or export PNG preview images.
 
 * [Why would someone need this?](#why-would-someone-need-this)
