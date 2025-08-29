@@ -3,7 +3,7 @@ FANSI CONVERT
 
 ![Before-and-after comparison shows ANSI art of the startship Enterprise in .ANS format and .FAN format](https://raw.githubusercontent.com/Kirkman/fansi-convert/master/NI-C1701-comparison.png)
 
-This Python script enables you to convert .ANS or .TXT files to .FAN for the first time in 30 years! You can also do reverse conversions, or export PNG preview images.
+This Python script enables you to convert .ANS or .TXT files to .FAN for the first time in 30 years! You can also do reverse conversions (.FAN -> .ANS), or export PNG preview images.
 
 * [Why would someone need this?](#why-would-someone-need-this)
 * [How do I use this?](#how-do-i-use-this)
@@ -27,6 +27,7 @@ How do I use this?
 This script requires Python >= 3.9, and has one dependency: [Pillow](https://pillow.readthedocs.io/en/stable/index.html).
 
 ### Installation
+
 ```
 git clone https://github.com/Kirkman/fansi-convert.git
 cd fansi-convert
@@ -34,27 +35,35 @@ pip install Pillow
 ```
 
 ### Usage
+
 ```
-python convert.py [-h] [-P] [-s] input_file
-or
-python convert.py [--help] [--png] [--scale] input_file
+python convert.py [-h] [-P] [-s SCALE] input_file [input_file ...]
 ```
+
+positional arguments    | description
+----------------------- | ---------------------------------------------------------------------------
+input_file ...          | .ANS, .TXT, or .FAN file(s) to be converted. Can include wildcards (*.ans).
+
+optional arguments      | description
+----------------------- | ---------------------------------------------------------------------------
+-P, --png               | Setting this flag will generate a PNG image from the input_file.
+-s SCALE, --scale SCALE | Set scale of the PNG image, if `--png` flag is set. Defaults to 2 (640x384).
 
 ### Examples
 
-_Convert an .ANS file to .FAN, generate a PNG image, and set the PNG's scale to 4_
+_Convert one .ANS file to .FAN, generate a PNG image, and set the PNG's scale to 4_
 ```
 python convert.py MYANSI.ANS --png --scale 4
 ```
 
-_Convert a .TXT file to .FAN_
+_Convert all .FAN files in a directory to .ANS_
 ```
-python convert.py MYTEXT.TXT
+python convert.py /MYDIR/*.FAN
 ```
 
-_Convert a .FAN file to .ANS_
+_Convert two .TXT files to .ANS_
 ```
-python convert.py MYFANSI.FAN
+python convert.py MYTEXT1.TXT MYTEXT2.TXT
 ```
 
 
