@@ -1,5 +1,6 @@
 import os
 import sys
+import glob
 import argparse
 from typing import List, Tuple
 from PIL import Image, ImageDraw
@@ -947,7 +948,7 @@ def main():
 	)
 
 	parser.add_argument(
-		'input_file', default=None, help='.ANS, .TXT, or .FAN file to be converted.',
+		'input_file', nargs="+", default=[], help='.ANS, .TXT, or .FAN file(s) to be converted. Can include wildcards (*.ans).',
 	)
 	parser.add_argument(
 		'-P', '--png', action='store_true', help='Setting this flag will generate a PNG image from the input_file.',
@@ -956,61 +957,94 @@ def main():
 		'-s', '--scale', nargs=1, default=2, type=int, help='Sets scale of the PNG image, if `--png` flag is set. Defaults to 2 (640x384).',
 	)
 
-
 	args = vars(parser.parse_args())
 
-	input_filepath = os.path.normpath(str(args['input_file']))
-	input_filename = os.path.basename(input_filepath)
-	input_extension = os.path.splitext(input_filepath)[-1]
-	input_type = input_extension.replace('.','').lower()
-	ext_upper = input_extension.isupper()
+	# Build list of filepaths.
+	input_files = []
+	for user_input in args['input_file']:
+		# Use glob to process paths with wildcards.
+		file_list = glob.glob(user_input)
+		# Glob returns a list, so we need to merge it with input_files.
+		if file_list:
+			input_files.extend(file_list)
+		# If glob returns nothing, just append the user string.
+		else:
+			input_files.append(user_input)
 
-	if input_type not in ['ans','txt','fan']:
-		print(f'`{input_type}`')
-		raise ValueError(f'Did not process {input_filename}. This script requires an input file ending in .ANS, .TXT, or .FAN. ')
+	# Normalize the paths
+	input_files = [os.path.normpath(str(f)) for f in input_files]
 
-	png_path = None
-	if args['png']:
-		out_ext = '.png'
-		if ext_upper:
-			out_ext = out_ext.upper()
+	# Iterate over the input files, processing each separately.
+	for input_filepath in input_files:
+		print(f'\nProcessing {input_filepath}')
 
-		png_path = input_filepath.replace(input_extension, out_ext)
+		input_filename = os.path.basename(input_filepath)
+		input_extension = os.path.splitext(input_filepath)[-1]
+		input_type = input_extension.replace('.','').lower()
+		ext_upper = input_extension.isupper()
 
-	scale = 2
-	if args['scale']:
-		if type(args['scale']) is list:
-			scale = int(args['scale'][0])
-		elif type(args['scale']) is int:
-			scale = args['scale']
+		# Check file has an acceptable file extension
+		if input_type not in ['ans','txt','fan']:
+			print(f'`{input_type}`')
+			raise ValueError(f'Did not process {input_filename}. This script requires an input file ending in .ANS, .TXT, or .FAN. ')
 
-	if input_type == 'fan':
-		out_ext = '.ans'
-		if ext_upper:
-			out_ext = out_ext.upper()
+		# Generate output PNG path, if flag was set
+		png_path = None
+		if args['png']:
+			# Make new extension match old extension's case
+			out_ext = '.png'
+			if ext_upper:
+				out_ext = out_ext.upper()
+			png_path = input_filepath.replace(input_extension, out_ext)
 
-		output_filepath = input_filepath.replace(input_extension, out_ext)
+		# Set PNG scale, if flag was set
+		scale = 2
+		if args['scale']:
+			if type(args['scale']) is list:
+				scale = int(args['scale'][0])
+			elif type(args['scale']) is int:
+				scale = args['scale']
 
-		fan_to_ans(
-			fan_path=input_filepath,
-			ans_path=output_filepath,
-			png_path=png_path,
-			png_scale=scale,
-		)
 
-	elif input_type in ['ans', 'txt']:
-		out_ext = '.fan'
-		if ext_upper:
-			out_ext = out_ext.upper()
+		# ====================
+		# CONVERSION ROUTINES
+		# ====================
 
-		output_filepath = input_filepath.replace(input_extension, out_ext)
+		# ------------
+		# .FAN -> .ANS
+		# ------------
+		if input_type == 'fan':
+			# Make new extension match old extension's case
+			out_ext = '.ans'
+			if ext_upper:
+				out_ext = out_ext.upper()
 
-		ans_to_fan(
-			ans_path=input_filepath,
-			fan_path=output_filepath,
-			png_path=png_path,
-			png_scale=scale,
-		)
+			output_filepath = input_filepath.replace(input_extension, out_ext)
+
+			fan_to_ans(
+				fan_path=input_filepath,
+				ans_path=output_filepath,
+				png_path=png_path,
+				png_scale=scale,
+			)
+
+		# ----------------
+		# .ANS/TXT -> .FAN
+		# ----------------
+		elif input_type in ['ans', 'txt']:
+			# Make new extension match old extension's case
+			out_ext = '.fan'
+			if ext_upper:
+				out_ext = out_ext.upper()
+
+			output_filepath = input_filepath.replace(input_extension, out_ext)
+
+			ans_to_fan(
+				ans_path=input_filepath,
+				fan_path=output_filepath,
+				png_path=png_path,
+				png_scale=scale,
+			)
 
 
 
