@@ -58,7 +58,7 @@ python convert.py MYANSI.ANS --png --scale 4
 
 _Convert all .FAN files in a directory to .ANS_
 ```
-python convert.py /MYDIR/*.FAN
+python convert.py PATH/TO/MY/*.FAN
 ```
 
 _Convert two .TXT files to .ANS_
