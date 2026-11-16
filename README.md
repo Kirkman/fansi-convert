@@ -3,7 +3,7 @@ FANSI CONVERT
 
 ![Before-and-after comparison shows ANSI art of the startship Enterprise in .ANS format and .FAN format](https://raw.githubusercontent.com/Kirkman/fansi-convert/master/NI-C1701-comparison.png)
 
-This Python script enables you to convert .ANS or .TXT files to .FAN for the first time in 30 years! You can also do reverse conversions (.FAN -> .ANS), or export PNG preview images.
+This Python script enables you to convert .ANS or .TXT files to .FAN -- for the first time in 30 years! You can also do reverse conversions (.FAN -> .ANS), or export PNG preview images.
 
 * [Why would someone need this?](#why-would-someone-need-this)
 * [How do I use this?](#how-do-i-use-this)
@@ -14,7 +14,7 @@ This Python script enables you to convert .ANS or .TXT files to .FAN for the fir
 Why would someone need this?
 ----------------------------
 
-This script is for Atari ST users who want to convert .ANS files to .FAN format for use with "FANSI," an Atari ST ANSI art editor released in 1994 by Eric March.
+This script is for Atari ST users who want to convert .ANS files to .FAN format for use with "FANSI," an Atari ST-based ANSI art editor released in 1994 by Eric March.
 
 While FANSI can save artwork as cross-platform .ANS files, it cannot _read_ .ANS files. FANSI will only read its native format (.FAN). 
 
