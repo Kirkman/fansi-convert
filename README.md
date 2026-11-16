@@ -79,7 +79,7 @@ Important notes
 4. This script is mainly intended for use with ANSI art files, but it also can be used to convert plain text files to .FAN format. Text files must have the extension .TXT, and conversion only works in one direction (TXT -> FAN).
 
 
-![Old advertisement for the Atari ST program "FANSI"](https://raw.githubusercontent.com/Kirkman/fansi-convert/master/FANSI.PNG)
+![Old advertisement for the Atari ST program "FANSI"](https://raw.githubusercontent.com/Kirkman/fansi-convert/refs/heads/master/FANSI.PNG)
 
 
 FAN file format
